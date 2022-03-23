@@ -75,5 +75,24 @@ export function getAllUser(){
     )
 }
 
+export function logout(){
+    return new Promise(
+        function(resolve, reject){
+            axios.get(apiEndPoint + 'logout', {
+                headers:{
+                    'Accept' : 'application/json'
+                },
+                credentials: 'include',
+            })
+            .then(function(res){
+                return resolve(res)
+            })
+            .catch(function(err){
+                return reject(err)
+            })
+        }
+    )
+}
+
 
 

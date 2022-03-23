@@ -67,3 +67,7 @@ exports.getAllUser = (req, res, next) => {
     .catch(err => res.status(404).json(err))
 }
 
+exports.logout = (req, res) => {
+    res.cookie('jwt',"",{maxAge:1});
+    res.status(200).json({logout: true});
+}

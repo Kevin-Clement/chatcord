@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../UserContext';
-import { getAllUser } from '../../services/apiService'
+import { getAllUser, logout } from '../../services/apiService'
 import RoomList from './RoomList';
 import io from 'socket.io-client';
 
@@ -58,8 +58,13 @@ const Home = () => {
         }
     }
     const userLogout = () => {
-        navigate('/login')
-        setUser(null);
+        logout().then((res) =>  {
+            if(res.status === 200){
+                setUser(null);
+                navigate('/login')
+            }
+        })
+        .catch((err) => console.log(err))
     }
 
     return (
